@@ -1,0 +1,26 @@
+<div cdkDropListGroup>
+  <ul class="tower" id="tower-1"
+      cdkDropList
+      [cdkDropListData]="dataList1"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListEnterPredicate]="dropPredicate">
+    <app-disk cdkDrag *ngFor="let data of dataList1" [cdkDragData]="data" [cdkDragDisabled]="!data.draggable">
+    </app-disk>
+  </ul>
+  <ul class="tower" id="tower-2"
+      cdkDropList
+      [cdkDropListData]="dataList2"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListEnterPredicate]="dropPredicate">
+    <app-disk cdkDrag *ngFor="let data of dataList2" [cdkDragData]="data" [cdkDragDisabled]="!data.draggable">
+    </app-disk>
+  </ul>
+  <ul class="tower" id="tower-3"
+      cdkDropList
+      [cdkDropListData]="dataList3"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListEnterPredicate]="dropPredicate">
+    <app-disk cdkDrag *ngFor="let data of dataList3" [cdkDragData]="data" [cdkDragDisabled]="!data.draggable">
+    </app-disk>
+  </ul>
+</div>
