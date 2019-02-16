@@ -4,6 +4,11 @@ import { MAX_DISK_NUM } from '../models/disk-data';
 import { TowersComponent } from '../towers/towers.component';
 import { DialogComponent } from '../dialog/dialog.component';
 
+interface Move {
+  from: string;
+  to: string;
+}
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -14,9 +19,9 @@ export class BoardComponent implements OnInit {
   diskNum = 1;
   labels = ['A', 'B', 'C'];
   inputMode = false;
+  hintOn = false;
   moveCount: number;
-  hintOn: boolean;
-  steps: string[];
+  moves: Move[];
 
   @ViewChild(TowersComponent)
   private towersComponent: TowersComponent;
@@ -29,7 +34,6 @@ export class BoardComponent implements OnInit {
 
   init() {
     this.moveCount = 0;
-    this.hintOn = false;
     this.solveHanoiTower(this.diskNum);
   }
 
@@ -53,14 +57,14 @@ export class BoardComponent implements OnInit {
   }
 
   solveHanoiTower(n: number) {
-    this.steps = [];
+    this.moves = [];
     const [a, b, c] = this.labels;
     this.solver(n, a, c, b);
   }
 
   solver(n: number, from: string, to: string, spare: string) {
     if (n === 1) {
-      this.steps.push(`move from ${from} to ${to}`);
+      this.moves.push({ from, to })
     } else {
       this.solver(n - 1, from, spare, to);
       this.solver(1, from, to, spare);
@@ -73,7 +77,7 @@ export class BoardComponent implements OnInit {
       disableClose: true,
       minWidth: '300px',
       data: {
-        isMaster: this.steps.length === this.moveCount,
+        isMaster: this.moves.length === this.moveCount,
         isLastLevel: this.diskNum === MAX_DISK_NUM
       }
     });
@@ -88,5 +92,10 @@ export class BoardComponent implements OnInit {
       }
       this.restart();
     });
+  }
+
+  step() {
+    const move = this.moves[this.moveCount];
+    this.towersComponent.step(move.from, move.to);
   }
 }

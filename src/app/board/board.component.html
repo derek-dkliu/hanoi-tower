@@ -17,19 +17,18 @@
   </div>
 </div>
 
-<app-towers [diskNum]="diskNum"
+<app-towers [diskNum]="diskNum" [labels]="labels"
   (moved)="addMoveCount($event)"
   (done)="openDialog()"></app-towers>
 
-<div class="flex-container">
-  <div class="tower-label" *ngFor="let label of labels">{{label}}</div>
-</div>
-
 <div class="flex-container" *ngIf="hintOn">
   <mat-list class="hints">
-    <h3 mat-subheader>Answer</h3>
-    <mat-list-item *ngFor="let step of steps; let i = index">
-      {{i + 1}}. {{step}}
+    <div class="hint-head">
+      <h3 mat-subheader>Answer</h3>
+      <div class="step" (click)="step()"><mat-icon>skip_next</mat-icon></div>
+    </div>
+    <mat-list-item *ngFor="let move of moves; let i = index" [class.active-step]="i === moveCount-1">
+      {{i + 1}}. move from {{move.from}} to {{move.to}}
     </mat-list-item>
   </mat-list>
 </div>

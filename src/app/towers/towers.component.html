@@ -1,26 +1,15 @@
 <div cdkDropListGroup class="flex-container">
-  <div class="tower"
+  <div class="tower" [id]="item.key"
+      *ngFor="let item of dataMap | keyvalue"
       cdkDropList
-      [cdkDropListData]="dataList1"
+      [cdkDropListData]="item.value"
       (cdkDropListDropped)="drop($event)"
-      [cdkDropListEnterPredicate]="dropPredicate">
-    <app-disk cdkDrag *ngFor="let data of dataList1" [cdkDragData]="data" [cdkDragDisabled]="!data.draggable">
+      [cdkDropListEnterPredicate]="isDroppable">
+    <app-disk cdkDrag *ngFor="let data of item.value" [cdkDragData]="data" [cdkDragDisabled]="!data.draggable">
     </app-disk>
   </div>
-  <div class="tower"
-      cdkDropList
-      [cdkDropListData]="dataList2"
-      (cdkDropListDropped)="drop($event)"
-      [cdkDropListEnterPredicate]="dropPredicate">
-    <app-disk cdkDrag *ngFor="let data of dataList2" [cdkDragData]="data" [cdkDragDisabled]="!data.draggable">
-    </app-disk>
-  </div>
-  <div class="tower" id="target"
-      cdkDropList
-      [cdkDropListData]="dataList3"
-      (cdkDropListDropped)="drop($event)"
-      [cdkDropListEnterPredicate]="dropPredicate">
-    <app-disk cdkDrag *ngFor="let data of dataList3" [cdkDragData]="data" [cdkDragDisabled]="!data.draggable">
-    </app-disk>
-  </div>
+</div>
+
+<div class="flex-container">
+  <div class="tower-label" *ngFor="let label of labels">{{label}}</div>
 </div>
