@@ -1,0 +1,49 @@
+.menu {
+  width: 33%;
+  max-width: 150px;
+  margin: -10px 2% 0px 0px;
+  text-align: center;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 5px;
+}
+
+.hint,
+.restart {
+  margin-top: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.restart {
+  margin-right: 20px;
+}
+
+.tower-label {
+  width: 33%;
+  max-width: 150px;
+  margin: 0px 2% 0px 0px;
+  text-align: center;
+  font-size: large;
+
+  &:last-child {
+    margin-right: 0;
+    border-color: goldenrod;
+    color: goldenrod;
+  }
+}
+
+.hints mat-list-item {
+  height: 25px;
+  font-size: small;
+}

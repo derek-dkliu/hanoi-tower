@@ -1,0 +1,20 @@
+<div class="congrat">
+  <p>
+    <strong>Congratulations!</strong>
+    <mat-icon aria-label="congratulation">thumb_up</mat-icon>
+  </p>
+  <div *ngIf="params.isMaster" class="master">
+    Well done, you finished with minimum moves!
+  </div>
+</div>
+
+<mat-dialog-actions [attr.align]="'end'">
+  <button mat-button (click)="tryAgain()">
+    <mat-icon aria-label="try again">refresh</mat-icon>
+    Try again
+  </button>
+  <button mat-button color="primary" (click)="nextLevel()">
+    <mat-icon aria-label="next level">check</mat-icon>
+    {{params.isLastLevel ? 'Done' : 'Next level'}}
+  </button>
+</mat-dialog-actions>

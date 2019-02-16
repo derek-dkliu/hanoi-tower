@@ -1,1 +1,35 @@
-<app-towers></app-towers>
+<div class="flex-container">
+  <div class="menu">moves {{moveCount}}</div>
+  <div class="menu">
+    <div *ngIf="!inputMode">Level <strong>{{diskNum}}</strong></div>
+    <input matInput *ngIf="inputMode" type="number" step="1" tabindex="1"
+      [min]="1" [max]="maxDiskNum" [(ngModel)]="diskNum" (input)="diskNumChanged($event.target.value)">
+  </div>
+  <div class="menu">
+    <div class="controls">
+      <div class="restart" (click)="restart()">
+        <mat-icon aria-label="restart" color="accent">refresh</mat-icon>
+      </div>
+      <div class="hint" (click)="switchHint()">
+        <mat-icon aria-label="hint">{{hintOn ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-towers [diskNum]="diskNum"
+  (moved)="addMoveCount($event)"
+  (done)="openDialog()"></app-towers>
+
+<div class="flex-container">
+  <div class="tower-label" *ngFor="let label of labels">{{label}}</div>
+</div>
+
+<div class="flex-container" *ngIf="hintOn">
+  <mat-list class="hints">
+    <h3 mat-subheader>Answer</h3>
+    <mat-list-item *ngFor="let step of steps; let i = index">
+      {{i + 1}}. {{step}}
+    </mat-list-item>
+  </mat-list>
+</div>
