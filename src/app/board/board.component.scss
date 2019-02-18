@@ -1,3 +1,7 @@
+:host {
+  width: 100%;
+}
+
 .menu {
   width: 33%;
   max-width: 150px;
@@ -49,5 +53,5 @@
 }
 
 .active-step {
-  color: red;
+  color: dodgerblue;
 }

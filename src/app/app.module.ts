@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule, MatIconModule, MatListModule, MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatInputModule, MatIconModule, MatListModule, 
+         MatToolbarModule, MatDialogModule, MatButtonModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { DialogComponent } from './dialog/dialog.component';
     MatIconModule,
     MatListModule,
     MatDialogModule,
+    MatToolbarModule,
     MatButtonModule,
     AppRoutingModule,
   ],

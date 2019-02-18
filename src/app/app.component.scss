@@ -1,0 +1,26 @@
+.flex-container-vertical {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.toolbar {
+  flex: 0 1 auto;
+  height: 50px;
+}
+
+.main {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+  flex: 0 0 auto;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 0.7em;
+  color: #FFF;
+  background-color: #666;
+  padding: 10px 20px;
+  text-align: right;
+}

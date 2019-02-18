@@ -27,7 +27,7 @@
       <h3 mat-subheader>Answer</h3>
       <div class="step" (click)="step()"><mat-icon>skip_next</mat-icon></div>
     </div>
-    <mat-list-item *ngFor="let move of moves; let i = index" [class.active-step]="i === moveCount-1">
+    <mat-list-item *ngFor="let move of moves; let i = index" [class.active-step]="i === moveCount">
       {{i + 1}}. move from {{move.from}} to {{move.to}}
     </mat-list-item>
   </mat-list>
