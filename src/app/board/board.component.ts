@@ -22,8 +22,9 @@ export class BoardComponent implements OnInit {
   hintOn = false;
   moveCount: number;
   moves: Move[];
+  autoRunning: boolean;
 
-  @ViewChild(TowersComponent)
+  @ViewChild(TowersComponent, {static: true})
   private towersComponent: TowersComponent;
 
   constructor(private dialog: MatDialog) { }
@@ -33,6 +34,7 @@ export class BoardComponent implements OnInit {
   }
 
   init() {
+    this.autoRunning = false;
     this.moveCount = 0;
     this.solveHanoiTower(this.diskNum);
   }
@@ -64,7 +66,7 @@ export class BoardComponent implements OnInit {
 
   solver(n: number, from: string, to: string, spare: string) {
     if (n === 1) {
-      this.moves.push({ from, to })
+      this.moves.push({ from, to });
     } else {
       this.solver(n - 1, from, spare, to);
       this.solver(1, from, to, spare);
@@ -95,7 +97,26 @@ export class BoardComponent implements OnInit {
   }
 
   step() {
-    const move = this.moves[this.moveCount];
-    this.towersComponent.step(move.from, move.to);
+    if (!this.autoRunning) {
+      const move = this.moves[this.moveCount];
+      this.towersComponent.step(move.from, move.to);
+    }
+  }
+
+  async run() {
+    if (!this.autoRunning) {
+      this.autoRunning = true;
+      for (let i = 0; i < this.moves.length; i++) {
+        if (i >= this.moveCount) {
+          const move = this.moves[i];
+          await new Promise(resolve => {
+            this.towersComponent.step(move.from, move.to);
+            setTimeout(() => {
+              resolve(true);
+            }, 1000);
+          });
+        }
+      }
+    }
   }
 }
