@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { MAX_DISK_NUM } from '../models/disk-data';
 import { TowersComponent } from '../towers/towers.component';
 import { DialogComponent } from '../dialog/dialog.component';
